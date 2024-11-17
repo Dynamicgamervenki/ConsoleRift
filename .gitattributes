@@ -1,1 +1,4 @@
 *.uasset filter=lfs diff=lfs merge=lfs -text
+Content/Import/Textures/Broken_Scale_Plastic/Broken_l_Broken_Scale_Plastic_BaseColor.tga filter=lfs diff=lfs merge=lfs -text
+Import/Mirrors/L_Mirrors_BaseColor.tga filter=lfs diff=lfs merge=lfs -text
+Import/TV_Self/L_TV_Self_BaseColor.tga filter=lfs diff=lfs merge=lfs -text
