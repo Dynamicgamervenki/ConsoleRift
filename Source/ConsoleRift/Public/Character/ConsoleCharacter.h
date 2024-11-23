@@ -49,11 +49,11 @@ protected:
 	float DoubleJumpHeight = 500;
 	
 
-private:
+
 	
-	UPROPERTY(VisibleAnywhere)
+	UPROPERTY(VisibleAnywhere,BlueprintReadWrite)
 	class UCameraComponent* CameraView;
-	UPROPERTY(VisibleAnywhere)
+	UPROPERTY(VisibleAnywhere,BlueprintReadWrite)
 	class USpringArmComponent* CameraBoom;
 
 
