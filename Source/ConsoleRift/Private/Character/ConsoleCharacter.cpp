@@ -15,6 +15,8 @@ AConsoleCharacter::AConsoleCharacter()
 {
 	PrimaryActorTick.bCanEverTick = true;
 
+	MoveRelativeToCamera = false;
+
 	ConsoleInputMappingContext = CreateDefaultSubobject<UInputMappingContext>(TEXT("ConsoleInputMappingContext"));
 
 	bUseControllerRotationPitch = false;
@@ -26,7 +28,7 @@ AConsoleCharacter::AConsoleCharacter()
 
 	//Spring-Arm
 	CameraBoom = CreateDefaultSubobject<USpringArmComponent>(TEXT("Spring Arm Component"));
-	CameraBoom->TargetArmLength = 300.0f;
+	CameraBoom->TargetArmLength = 300.0f; 
 	CameraBoom->bUsePawnControlRotation = true;
 	CameraBoom->SetupAttachment(RootComponent);
 	
@@ -58,16 +60,37 @@ void AConsoleCharacter::Tick(float DeltaTime)
 
 void AConsoleCharacter::Move(const FInputActionValue& Value)
 {
-	const FVector2d MovementVector = Value.Get<FVector2D>();
+	if (MoveRelativeToCamera)
+	{
+		const FVector2d MovementVector = Value.Get<FVector2D>();
+		
+		FVector CameraForward = CameraView->GetForwardVector();
+		FVector CameraRight = CameraView->GetRightVector();
 
-	FRotator Rotation = Controller->GetControlRotation();
-	
-	FRotator YawRotation = FRotator(0.0f,Rotation.Yaw,0.0f);
-	
-	const FVector ForwardDirection = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::X);
-	AddMovementInput(ForwardDirection,MovementVector.Y);
-	const FVector RightDirection = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::Y);
-	AddMovementInput(RightDirection,MovementVector.X);
+		// Flatten the forward and right vectors to ensure movement stays horizontal
+		CameraForward.Z = 0.0f;
+		CameraRight.Z = 0.0f;
+
+		// Normalize to avoid any scaling issues
+		CameraForward.Normalize();
+		CameraRight.Normalize();
+
+		AddMovementInput(CameraForward, MovementVector.Y);
+		AddMovementInput(CameraForward, MovementVector.X);
+	}
+	else
+	{
+		const FVector2d MovementVector = Value.Get<FVector2D>();
+
+		FRotator Rotation = Controller->GetControlRotation();
+		
+		FRotator YawRotation = FRotator(0.0f,Rotation.Yaw,0.0f);
+		
+		const FVector ForwardDirection = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::X);
+		AddMovementInput(ForwardDirection,MovementVector.Y);
+		const FVector RightDirection = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::Y);
+		AddMovementInput(RightDirection,MovementVector.X);
+	}
 }
 
 void AConsoleCharacter::Look(const FInputActionValue& Value)

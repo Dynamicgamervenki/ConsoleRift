@@ -47,6 +47,8 @@ protected:
 	float JumpHeight = 300;
 	UPROPERTY(EditAnywhere,BlueprintReadWrite,Category="Movement")
 	float DoubleJumpHeight = 500;
+	UPROPERTY(EditAnywhere,BlueprintReadWrite,Category="Movement")
+	bool MoveRelativeToCamera;
 	
 
 
