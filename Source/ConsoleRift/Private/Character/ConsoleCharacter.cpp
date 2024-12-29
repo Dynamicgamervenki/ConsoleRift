@@ -56,14 +56,15 @@ void AConsoleCharacter::BeginPlay()
 void AConsoleCharacter::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+	
 }
 
 void AConsoleCharacter::Move(const FInputActionValue& Value)
 {
+	const FVector2D MovementVector = Value.Get<FVector2D>();
+
 	if (MoveRelativeToCamera)
 	{
-		const FVector2d MovementVector = Value.Get<FVector2D>();
-		
 		FVector CameraForward = CameraView->GetForwardVector();
 		FVector CameraRight = CameraView->GetRightVector();
 
@@ -75,13 +76,19 @@ void AConsoleCharacter::Move(const FInputActionValue& Value)
 		CameraForward.Normalize();
 		CameraRight.Normalize();
 
-		AddMovementInput(CameraForward, MovementVector.Y);
-		AddMovementInput(CameraForward, MovementVector.X);
+		if (MoveOnlyInYAxis)
+		{
+			AddMovementInput(CameraForward, MovementVector.Y);
+		}
+		else
+		{
+			AddMovementInput(CameraForward, MovementVector.Y);
+			AddMovementInput(CameraForward, MovementVector.X);
+		}
+		
 	}
 	else
-	{
-		const FVector2d MovementVector = Value.Get<FVector2D>();
-
+	 {
 		FRotator Rotation = Controller->GetControlRotation();
 		
 		FRotator YawRotation = FRotator(0.0f,Rotation.Yaw,0.0f);
@@ -91,6 +98,8 @@ void AConsoleCharacter::Move(const FInputActionValue& Value)
 		const FVector RightDirection = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::Y);
 		AddMovementInput(RightDirection,MovementVector.X);
 	}
+
+
 }
 
 void AConsoleCharacter::Look(const FInputActionValue& Value)
