@@ -87,6 +87,17 @@ void AConsoleCharacter::Move(const FInputActionValue& Value)
 		}
 		
 	}
+	else if (Enable2DCamera)
+	{
+		FVector CameraForward = CameraView->GetRightVector();
+		FVector CameraRight = CameraView->GetForwardVector();
+		CameraForward.Z = 0.0f;
+		CameraRight.Z = 0.0f;
+		CameraForward.Normalize();
+		CameraRight.Normalize();
+		AddMovementInput(CameraForward, MovementVector.X);
+		AddMovementInput(CameraRight, MovementVector.Y);
+	}
 	else
 	 {
 		FRotator Rotation = Controller->GetControlRotation();

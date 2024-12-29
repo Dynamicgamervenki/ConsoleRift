@@ -53,6 +53,8 @@ protected:
 	float ForwardAxis;
 	UPROPERTY(EditAnywhere,BlueprintReadWrite,Category="Movement")
 	bool MoveOnlyInYAxis = false;
+	UPROPERTY(EditAnywhere,BlueprintReadWrite,Category="Movement")
+	bool Enable2DCamera;
 	
 
 
