@@ -24,7 +24,8 @@ AConsoleCharacter::AConsoleCharacter()
 	bUseControllerRotationRoll = false;
 
 	GetCharacterMovement()->bOrientRotationToMovement = true;
-	GetCharacterMovement()->RotationRate = FRotator(0.f, 360.f, 0.f);
+	GetCharacterMovement()->RotationRate = FRotator(0.f, 720
+		.f, 0.f);
 
 	//Spring-Arm
 	CameraBoom = CreateDefaultSubobject<USpringArmComponent>(TEXT("Spring Arm Component"));
