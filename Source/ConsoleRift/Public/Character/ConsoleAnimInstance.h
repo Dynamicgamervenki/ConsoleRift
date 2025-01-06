@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Animation/AnimInstance.h"
+#include "Character/CharacterTypes.h"
 #include "ConsoleAnimInstance.generated.h"
 
 
@@ -32,4 +33,6 @@ class CONSOLERIFT_API UConsoleAnimInstance : public UAnimInstance
 	
 	UPROPERTY(BlueprintReadOnly, Category = Movement)
 	int JumpCount;
+
+	ECharacterState CharacterState;
 };

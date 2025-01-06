@@ -10,12 +10,11 @@
 #include  "EnhancedInputSubsystems.h"
 #include "GameFramework/SpringArmComponent.h"
 
+
 // Sets default values
 AConsoleCharacter::AConsoleCharacter()
 {
 	PrimaryActorTick.bCanEverTick = true;
-
-//	MoveRelativeToCamera = false;
 
 	ConsoleInputMappingContext = CreateDefaultSubobject<UInputMappingContext>(TEXT("ConsoleInputMappingContext"));
 
@@ -24,8 +23,7 @@ AConsoleCharacter::AConsoleCharacter()
 	bUseControllerRotationRoll = false;
 
 	GetCharacterMovement()->bOrientRotationToMovement = true;
-	GetCharacterMovement()->RotationRate = FRotator(0.f, 720
-		.f, 0.f);
+	GetCharacterMovement()->RotationRate = FRotator(0.f, 720.0f, 0.f);
 
 	//Spring-Arm
 	CameraBoom = CreateDefaultSubobject<USpringArmComponent>(TEXT("Spring Arm Component"));
@@ -37,7 +35,7 @@ AConsoleCharacter::AConsoleCharacter()
 	//Camera
 	CameraView = CreateDefaultSubobject<UCameraComponent>(TEXT("Camera"));
 	CameraView->SetupAttachment(CameraBoom);
-	
+	bOnScale = false;
 }
 
 
@@ -57,37 +55,30 @@ void AConsoleCharacter::BeginPlay()
 void AConsoleCharacter::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+
+
+	/*
+	 * Blance on Scale Mechanic 
+	 */
+	if (bOnScale)
+	{
+		if (GetVelocity().Size2D() == 0.0f)
+		{
+			GEngine->AddOnScreenDebugMessage(-4,1,FColor::Magenta,FString("Pause MOntage"));
+			GetMesh()->GetAnimInstance()->Montage_Pause();
+		}
+		else
+		{
+			GetMesh()->GetAnimInstance()->Montage_Resume(nullptr);
+		}
+	}
 	
 }
 
 void AConsoleCharacter::Move(const FInputActionValue& Value)
 {
 	const FVector2D MovementVector = Value.Get<FVector2D>();
-
-	/*if (MoveRelativeToCamera)
-	{
-		FVector CameraForward = CameraView->GetForwardVector();
-		FVector CameraRight = CameraView->GetRightVector();
-
-		// Flatten the forward and right vectors to ensure movement stays horizontal
-		CameraForward.Z = 0.0f;
-		CameraRight.Z = 0.0f;
-
-		// Normalize to avoid any scaling issues
-		CameraForward.Normalize();
-		CameraRight.Normalize();
-
-		if (MoveOnlyInYAxis)
-		{
-			AddMovementInput(CameraForward, MovementVector.Y);
-		}
-		else
-		{
-			AddMovementInput(CameraForward, MovementVector.Y);
-			AddMovementInput(CameraForward, MovementVector.X);
-		}
-		
-	}*/
+	
 	if (Enable2DCamera)
 	{
 		FVector CameraForward = CameraView->GetRightVector();

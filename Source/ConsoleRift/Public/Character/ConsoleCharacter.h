@@ -5,7 +5,9 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
 #include "InputActionValue.h"
+#include "Character/CharacterTypes.h"
 #include "ConsoleCharacter.generated.h"
+
 
 UCLASS()
 class CONSOLERIFT_API AConsoleCharacter : public ACharacter
@@ -16,6 +18,15 @@ public:
 	AConsoleCharacter();
 	virtual void Tick(float DeltaTime) override;
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
+
+	UPROPERTY(VisibleDefaultsOnly, BlueprintReadOnly, Category = TriggerBalance)
+	bool bOnScale;
+	
+	UPROPERTY(VisibleDefaultsOnly, BlueprintReadOnly, Category = Movement)
+	float MovementSpeed = 15.0f;
+
+	
+	
 protected:
 	virtual void BeginPlay() override;
 
@@ -47,22 +58,19 @@ protected:
 	float JumpHeight = 300;
 	UPROPERTY(EditAnywhere,BlueprintReadWrite,Category="Movement")
 	float DoubleJumpHeight = 500;
-//	UPROPERTY(EditAnywhere,BlueprintReadWrite,Category="Movement")
-//	bool MoveRelativeToCamera;
-//	UPROPERTY(EditAnywhere,BlueprintReadWrite,Category="Movement")
-//	float ForwardAxis;
-//	UPROPERTY(EditAnywhere,BlueprintReadWrite,Category="Movement")
-//	bool MoveOnlyInYAxis = false;
 	UPROPERTY(EditAnywhere,BlueprintReadWrite,Category="Movement")
 	bool Enable2DCamera;
 	
-
-
 	
 	UPROPERTY(VisibleAnywhere,BlueprintReadWrite)
 	class UCameraComponent* CameraView;
 	UPROPERTY(VisibleAnywhere,BlueprintReadWrite)
 	class USpringArmComponent* CameraBoom;
 
+
+private:
+	ECharacterState CharacterState = ECharacterState::ECS_Uneqipped;
+public:
+	FORCEINLINE  ECharacterState GetCharacterState() const{ return CharacterState;}
 
 };

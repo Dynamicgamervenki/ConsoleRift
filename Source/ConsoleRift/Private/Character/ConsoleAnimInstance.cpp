@@ -29,6 +29,7 @@ void UConsoleAnimInstance::NativeUpdateAnimation(float DeltaSeconds)
 		GroundSpeed = ConsoleCharacter->GetVelocity().Size2D();
 		IsFalling = MovementComponent->IsFalling();
 		JumpCount = ConsoleCharacter->JumpCurrentCount;
+		CharacterState = ConsoleCharacter->GetCharacterState();
 	}
 
 }
