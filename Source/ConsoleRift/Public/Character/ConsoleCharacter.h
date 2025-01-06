@@ -47,12 +47,12 @@ protected:
 	float JumpHeight = 300;
 	UPROPERTY(EditAnywhere,BlueprintReadWrite,Category="Movement")
 	float DoubleJumpHeight = 500;
-	UPROPERTY(EditAnywhere,BlueprintReadWrite,Category="Movement")
-	bool MoveRelativeToCamera;
-	UPROPERTY(EditAnywhere,BlueprintReadWrite,Category="Movement")
-	float ForwardAxis;
-	UPROPERTY(EditAnywhere,BlueprintReadWrite,Category="Movement")
-	bool MoveOnlyInYAxis = false;
+//	UPROPERTY(EditAnywhere,BlueprintReadWrite,Category="Movement")
+//	bool MoveRelativeToCamera;
+//	UPROPERTY(EditAnywhere,BlueprintReadWrite,Category="Movement")
+//	float ForwardAxis;
+//	UPROPERTY(EditAnywhere,BlueprintReadWrite,Category="Movement")
+//	bool MoveOnlyInYAxis = false;
 	UPROPERTY(EditAnywhere,BlueprintReadWrite,Category="Movement")
 	bool Enable2DCamera;
 	

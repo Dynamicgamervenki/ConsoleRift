@@ -15,7 +15,7 @@ AConsoleCharacter::AConsoleCharacter()
 {
 	PrimaryActorTick.bCanEverTick = true;
 
-	MoveRelativeToCamera = false;
+//	MoveRelativeToCamera = false;
 
 	ConsoleInputMappingContext = CreateDefaultSubobject<UInputMappingContext>(TEXT("ConsoleInputMappingContext"));
 
@@ -63,7 +63,7 @@ void AConsoleCharacter::Move(const FInputActionValue& Value)
 {
 	const FVector2D MovementVector = Value.Get<FVector2D>();
 
-	if (MoveRelativeToCamera)
+	/*if (MoveRelativeToCamera)
 	{
 		FVector CameraForward = CameraView->GetForwardVector();
 		FVector CameraRight = CameraView->GetRightVector();
@@ -86,8 +86,8 @@ void AConsoleCharacter::Move(const FInputActionValue& Value)
 			AddMovementInput(CameraForward, MovementVector.X);
 		}
 		
-	}
-	else if (Enable2DCamera)
+	}*/
+	if (Enable2DCamera)
 	{
 		FVector CameraForward = CameraView->GetRightVector();
 		FVector CameraRight = CameraView->GetForwardVector();
