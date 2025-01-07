@@ -25,6 +25,10 @@ public:
 	UPROPERTY(VisibleDefaultsOnly, BlueprintReadOnly, Category = Movement)
 	float MovementSpeed = 15.0f;
 
+	/*
+ * Funtions
+ */
+	void SetCameraInput(bool enable);
 	
 	
 protected:
@@ -52,6 +56,7 @@ protected:
 	void Move(const FInputActionValue& Value);
 	void Look(const FInputActionValue& Value);
 	void Jump();
+	
 
 	//Movement Varibales
 	UPROPERTY(EditAnywhere,BlueprintReadWrite,Category="Movement")
@@ -60,17 +65,21 @@ protected:
 	float DoubleJumpHeight = 500;
 	UPROPERTY(EditAnywhere,BlueprintReadWrite,Category="Movement")
 	bool Enable2DCamera;
-	
+
+public:
 	
 	UPROPERTY(VisibleAnywhere,BlueprintReadWrite)
 	class UCameraComponent* CameraView;
 	UPROPERTY(VisibleAnywhere,BlueprintReadWrite)
 	class USpringArmComponent* CameraBoom;
 
+	UFUNCTION(BlueprintCallable)
+	void IgnorePlayerInput(bool bIgnoreMoveInput,bool IgnoreLookInput);
 
 private:
 	ECharacterState CharacterState = ECharacterState::ECS_Uneqipped;
 public:
 	FORCEINLINE  ECharacterState GetCharacterState() const{ return CharacterState;}
-
+	FORCEINLINE void SetEnable2DCamera(bool enable)  { Enable2DCamera = enable;}
+	FORCEINLINE bool Get2DCamera() const {return Enable2DCamera;}
 };

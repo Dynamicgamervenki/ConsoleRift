@@ -6,7 +6,7 @@
 
 ATrigger_Base::ATrigger_Base()
 {
-	PrimaryActorTick.bCanEverTick = true;
+	PrimaryActorTick.bCanEverTick = false;
 	BoxTrigger = CreateDefaultSubobject<UBoxComponent>(FName("Trigger Begin"));
 
 	Root = CreateDefaultSubobject<USceneComponent>(TEXT("RootComponent"));
@@ -45,10 +45,4 @@ void ATrigger_Base::OnTriggerEndOverlap(UPrimitiveComponent* OverlappedComponent
 	}
 }
 
-
-void ATrigger_Base::Tick(float DeltaTime)
-{
-	Super::Tick(DeltaTime);
-
-}
 

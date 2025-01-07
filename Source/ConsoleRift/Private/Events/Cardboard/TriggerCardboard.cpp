@@ -7,7 +7,7 @@
 
 ATriggerCardboard::ATriggerCardboard()
 {
-	PrimaryActorTick.bCanEverTick = true;
+	PrimaryActorTick.bCanEverTick = false;
 	CardboardSkeletalMesh = CreateDefaultSubobject<USkeletalMeshComponent>(FName("SkeletalMesh"));
 	BoxCollider = CreateDefaultSubobject<UBoxComponent>(FName("BoxCollider"));
 
@@ -94,8 +94,4 @@ void ATriggerCardboard::IgnorePlayerInput(bool Ignore)
 }
 
 
-void ATriggerCardboard::Tick(float DeltaTime)
-{
-	Super::Tick(DeltaTime);
-}
 

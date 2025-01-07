@@ -33,6 +33,6 @@ class CONSOLERIFT_API UConsoleAnimInstance : public UAnimInstance
 	
 	UPROPERTY(BlueprintReadOnly, Category = Movement)
 	int JumpCount;
-
+	
 	ECharacterState CharacterState;
 };

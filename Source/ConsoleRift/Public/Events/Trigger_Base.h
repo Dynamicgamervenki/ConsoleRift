@@ -14,8 +14,6 @@ class CONSOLERIFT_API ATrigger_Base : public AActor
 	
 public:	
 	ATrigger_Base();
-	virtual void Tick(float DeltaTime) override;
-
 protected:
 	virtual void BeginPlay() override;
 

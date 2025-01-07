@@ -130,6 +130,24 @@ void AConsoleCharacter::Jump()
 	
 }
 
+void AConsoleCharacter::IgnorePlayerInput(bool bIgnoreMoveInput,bool IgnoreLookInput)
+{
+	if (APlayerController* PlayerController = GetWorld()->GetFirstPlayerController())
+	{
+		PlayerController->SetIgnoreMoveInput(bIgnoreMoveInput);
+		PlayerController->SetIgnoreLookInput(IgnoreLookInput);
+	}
+
+}
+
+void AConsoleCharacter::SetCameraInput(bool enable)
+{
+	CameraBoom->bUsePawnControlRotation = enable;
+	CameraBoom->bInheritPitch = enable;
+	CameraBoom->bInheritYaw = enable;
+	CameraBoom->bInheritRoll = enable;
+}
+
 
 void AConsoleCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {

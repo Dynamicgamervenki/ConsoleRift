@@ -16,7 +16,6 @@ class CONSOLERIFT_API ATriggerCardboard : public ATrigger_Base
 
 public:
 	ATriggerCardboard();
-	virtual void Tick(float DeltaTime) override;
 	
 protected:
 	virtual void BeginPlay() override;
