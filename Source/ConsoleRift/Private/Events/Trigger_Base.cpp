@@ -16,7 +16,7 @@ ATrigger_Base::ATrigger_Base()
 	BoxTrigger->SetBoxExtent(FVector(5.0f, 5.0f, 5.0f));
 	BoxTrigger->SetHiddenInGame(false);
 	BoxTrigger->SetLineThickness(0.1f);
-	BoxTrigger->ShapeColor = FColor::Green;
+	BoxTrigger->ShapeColor = FColor::Red;
 }
 
 void ATrigger_Base::BeginPlay()
@@ -25,7 +25,6 @@ void ATrigger_Base::BeginPlay()
 
 	BoxTrigger->OnComponentBeginOverlap.AddDynamic(this,&ATrigger_Base::OnTriggerBeginOverlap);
 	BoxTrigger->OnComponentEndOverlap.AddDynamic(this,&ATrigger_Base::OnTriggerEndOverlap);
-	
 }
 
 void ATrigger_Base::OnTriggerBeginOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor,
