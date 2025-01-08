@@ -25,7 +25,9 @@ protected:
 
 	UPROPERTY(EditAnywhere,BlueprintReadWrite,Category="Camera")
 	float YawAngle = -90.0f;
+	UPROPERTY(EditAnywhere,BlueprintReadWrite,Category="Camera")
+	float TargetArmLength = 50.0f;
 
-	UPROPERTY(EditDefaultsOnly,BlueprintReadOnly,Category="Camera")
-	UAnimationAsset* WalkingAnimation;
+	UPROPERTY(EditAnywhere,BlueprintReadOnly,Category="Camera")
+	UAnimMontage* AM_Walk;
 };

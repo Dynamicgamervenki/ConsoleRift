@@ -75,6 +75,11 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 	void IgnorePlayerInput(bool bIgnoreMoveInput,bool IgnoreLookInput);
+	UFUNCTION(BlueprintCallable)
+	 void ChangeCameraAngle(float Yaw,float TargetArmLength);
+
+	UFUNCTION()
+	void PlayAnimationMontage(UAnimMontage* MontageToPlay);
 
 private:
 	ECharacterState CharacterState = ECharacterState::ECS_Uneqipped;

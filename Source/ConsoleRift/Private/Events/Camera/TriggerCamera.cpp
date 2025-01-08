@@ -28,6 +28,8 @@ void ATriggerCamera::OnTriggerBeginOverlap(UPrimitiveComponent* OverlappedCompon
 		ConsoleCharacter->CameraBoom->SetUsingAbsoluteRotation(true);
 		ConsoleCharacter->CameraBoom->SetWorldRotation(FRotator(0, YawAngle, 0));
 		ConsoleCharacter->SetEnable2DCamera(true);
+		ConsoleCharacter->PlayAnimationMontage(AM_Walk);
+		ConsoleCharacter->CameraBoom->TargetArmLength = TargetArmLength;
 		// ConsoleCharacter->GetMesh()->PlayAnimation(WalkingAnimation,false);
 		// ConsoleCharacter->IgnorePlayerInput(true,true);
 		//
@@ -50,5 +52,7 @@ void ATriggerCamera::OnTriggerEndOverlap(UPrimitiveComponent* OverlappedComponen
 		ConsoleCharacter->CameraBoom->SetUsingAbsoluteRotation(false);
 		ConsoleCharacter->SetCameraInput(true);
 		ConsoleCharacter->SetEnable2DCamera(false);
+		ConsoleCharacter->CameraBoom->TargetArmLength = 70.0f;
 	}
 }
+

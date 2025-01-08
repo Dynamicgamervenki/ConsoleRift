@@ -10,6 +10,15 @@ public class ConsoleRiftEditorTarget : TargetRules
 		Type = TargetType.Editor;
 		DefaultBuildSettings = BuildSettingsVersion.V2;
 
-		ExtraModuleNames.AddRange( new string[] { "ConsoleRift" } );
+		// Allow overriding build environment
+		bOverrideBuildEnvironment = true;
+
+		// Suppress backward-compatible build warnings
+		DefaultBuildSettings = BuildSettingsVersion.V5;
+
+		// Ensure the latest include order is used
+		IncludeOrderVersion = EngineIncludeOrderVersion.Latest;
+
+		ExtraModuleNames.AddRange(new string[] { "ConsoleRift" });
 	}
 }

@@ -22,7 +22,7 @@ class CONSOLERIFT_API ATriggerBalance : public ATrigger_Base
 	UAnimMontage* AM_BalanceWalk;
 	
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = TriggerBalance)
-	float bBalanceWalkSpeed = 4.0f;
+	float bBalanceWalkSpeed = 3.0f;
 
 protected:
 	virtual void OnTriggerBeginOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult) override;

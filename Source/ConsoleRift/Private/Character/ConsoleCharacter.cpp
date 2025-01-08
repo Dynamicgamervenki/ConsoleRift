@@ -140,6 +140,24 @@ void AConsoleCharacter::IgnorePlayerInput(bool bIgnoreMoveInput,bool IgnoreLookI
 
 }
 
+void AConsoleCharacter::ChangeCameraAngle(float Yaw, float TargetArmLength)
+{
+	if(CameraBoom->IsUsingAbsoluteRotation() && CameraBoom)
+	{
+		CameraBoom->SetWorldRotation(FRotator(0, Yaw, 0));
+		CameraBoom->TargetArmLength = TargetArmLength;
+	}
+}
+
+void AConsoleCharacter::PlayAnimationMontage(UAnimMontage* MontageToPlay)
+{
+	UAnimInstance* AnimInstance = GetMesh()->GetAnimInstance();
+	if (AnimInstance && MontageToPlay)
+	{
+		AnimInstance->Montage_Play(MontageToPlay);
+	}
+}
+
 void AConsoleCharacter::SetCameraInput(bool enable)
 {
 	CameraBoom->bUsePawnControlRotation = enable;
