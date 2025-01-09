@@ -73,8 +73,12 @@ public:
 	UPROPERTY(VisibleAnywhere,BlueprintReadWrite)
 	class USpringArmComponent* CameraBoom;
 
+	/*
+	 *Blueprint Callable 
+	 */
 	UFUNCTION(BlueprintCallable)
 	void IgnorePlayerInput(bool bIgnoreMoveInput,bool IgnoreLookInput);
+	
 	UFUNCTION(BlueprintCallable)
 	 void ChangeCameraAngle(float Yaw,float TargetArmLength);
 

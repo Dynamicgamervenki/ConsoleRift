@@ -30,6 +30,9 @@ AConsoleCharacter::AConsoleCharacter()
 	CameraBoom->TargetArmLength = 300.0f; 
 	CameraBoom->bUsePawnControlRotation = true;
 	CameraBoom->SetupAttachment(RootComponent);
+	CameraBoom->bEnableCameraLag = true;
+	CameraBoom->CameraLagSpeed = 40.0f;
+	CameraBoom->CameraRotationLagSpeed = 30.0f;
 	
 	
 	//Camera
