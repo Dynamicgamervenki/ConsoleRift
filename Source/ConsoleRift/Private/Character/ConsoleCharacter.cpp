@@ -179,6 +179,7 @@ void AConsoleCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCo
 		EnhancedInputComponent->BindAction(IA_Move,ETriggerEvent::Triggered,this,&AConsoleCharacter::Move);
 		EnhancedInputComponent->BindAction(IA_Look,ETriggerEvent::Triggered,this,&AConsoleCharacter::Look);
 		//EnhancedInputComponent->BindAction(IA_Jump,ETriggerEvent::Started,this,&AConsoleCharacter::Jump);
+
 	}
 }
 

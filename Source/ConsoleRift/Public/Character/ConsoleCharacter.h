@@ -49,6 +49,8 @@ protected:
 	UInputAction* IA_Jump;
 	UPROPERTY(EditAnywhere,BlueprintReadOnly,Category="Input")
 	UInputAction* IA_Dodge;
+	UPROPERTY(EditAnywhere,BlueprintReadOnly,Category="Input")
+	UInputAction* IA_Interact;
 
 	/*
 	 * Function CalLbacks
